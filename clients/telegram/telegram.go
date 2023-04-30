@@ -18,7 +18,7 @@ const (
 type Client struct {
 	host     string
 	basePath string      // API key
-	client   http.Client // ??
+	client   http.Client // performs http.Client operations like Do, Post, Get, Head ...
 }
 
 func New(host, token string) Client {
@@ -46,7 +46,7 @@ func (c *Client) Updates(offset int, limit int) ([]Update, error) {
 
 	var res UpdateResponse
 
-	if err := json.Unmarshal(data, &res); err != nil { // parses accorfing to the properties of UpdateResponse
+	if err := json.Unmarshal(data, &res); err != nil { // parses according to the properties of UpdateResponse
 		return nil, err
 	}
 
@@ -76,7 +76,7 @@ func (c *Client) doRequest(method string, query url.Values) (data []byte, err er
 		Path:   path.Join(c.basePath, method),
 	}
 
-	req, err := http.NewRequest(http.MethodGet, u.String(), nil) // creating a GET request
+	req, err := http.NewRequest(http.MethodGet, u.String(), nil) // creating a GET request (METHOD, URL, body)
 	if err != nil {
 		return nil, err
 	}
