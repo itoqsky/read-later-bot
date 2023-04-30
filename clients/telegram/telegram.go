@@ -21,8 +21,8 @@ type Client struct {
 	client   http.Client // performs http.Client operations like Do, Post, Get, Head ...
 }
 
-func New(host, token string) Client {
-	return Client{
+func New(host, token string) *Client {
+	return &Client{
 		host:     host,
 		basePath: newBasePath(token),
 		client:   http.Client{},
@@ -44,7 +44,7 @@ func (c *Client) Updates(offset int, limit int) ([]Update, error) {
 		return nil, err
 	}
 
-	var res UpdateResponse
+	var res UpdatesResponse
 
 	if err := json.Unmarshal(data, &res); err != nil { // parses according to the properties of UpdateResponse
 		return nil, err
@@ -56,7 +56,7 @@ func (c *Client) Updates(offset int, limit int) ([]Update, error) {
 
 func (c *Client) SendMessage(chatId int, text string) error {
 	q := url.Values{}
-	q.Add("chatId", strconv.Itoa(chatId)) // add key value query for url
+	q.Add("chat_id", strconv.Itoa(chatId)) // add key value query for url
 	q.Add("text", text)
 
 	_, err := c.doRequest(sendMessageMethod, q)

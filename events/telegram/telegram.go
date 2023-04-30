@@ -45,12 +45,19 @@ func (p *Processor) processMessage(event events.Event) error { // since we are p
 		return e.Wrap("can't process message", err)
 	}
 
+	if err := p.doCmd(event.Text, meta.ChatID, meta.Username); err != nil {
+		return e.Wrap("can't process message", err)
+	}
+
+	return nil
 }
+
 func meta(event events.Event) (Meta, error) {
 	res, ok := event.Meta.(Meta)
 	if !ok {
 		return Meta{}, e.Wrap("can't get meta", ErrUnknownMetaType)
 	}
+	return res, nil
 }
 
 func (p *Processor) Fetch(limit int) ([]events.Event, error) { // Difference between Update and Event is that Update is only in telegram, while Event is as a whole

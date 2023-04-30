@@ -3,29 +3,39 @@ package main
 import (
 	"flag"
 	"log"
-	"reader-adviser/clients/telegram"
+	event_consumer "reader-adviser-bot/consumer/event-consumer"
+	"reader-adviser-bot/events/telegram"
+	"reader-adviser-bot/storage/files"
+	tgClient "reader-adviser/clients/telegram"
 )
 
 const (
-	tgBotHost = "api.telegram.arg"
+	tgBotHost   = "api.telegram.org"
+	storagePath = "files_storage"
+	batchSize   = 100
 )
 
+// 6098437192:AAES4UcLv12IioNcHlCQ4urEJI7HSmYJUTw
+
 func main() {
+	eventsProcessor := telegram.New(
+		tgClient.New(tgBotHost, mustToken()),
+		files.New(storagePath),
+	)
 
-	tgClient = telegram.New(tgBotHost, mustToken())
+	log.Print("... server started")
 
-	// fetcher = fetcher.New()
-
-	// processor = processor.New()
-
-	// consumer.Start(fetcher, processor )
+	consumer := event_consumer.New(eventsProcessor, eventsProcessor, batchSize)
+	if err := consumer.Start(); err != nil {
+		log.Fatal("service is stopped", err)
+	}
 }
 
 func mustToken() string {
-	token := flag.String( // I DON'T KNOW THE REASON WHY USAGE OF FLAGS ARE PREFERABLE OVER RAW STRINGS
-		"token-bot-token",                  // name token-bot-token
-		"",                                 // value
-		"token for access to telegram bot", // usage	->	Use -h or --help flags to get automatically generated help text for the command-line program.
+	token := flag.String(
+		"tg-bot-token",
+		"",
+		"token for access to telegram bot",
 	)
 
 	flag.Parse()

@@ -27,7 +27,7 @@ func (s Storage) Save(page *storage.Page) (err error) {
 
 	fPath := filepath.Join(s.basePath, page.UserName) // 0) creating file path for a directorty) advantages over path.Join are to identify OS and adjust to it (i. e. wind-\ unix-/)
 
-	if err := os.Mkdir(fPath, defaultPerm); err != nil { // 1) Creating a DIRECTORY!
+	if err := os.MkdirAll(fPath, defaultPerm); err != nil { // 1) Creating a DIRECTORY!
 		return err
 	}
 
