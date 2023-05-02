@@ -62,7 +62,7 @@ func (s Storage) PickRandom(userName string) (page *storage.Page, err error) {
 		return nil, err
 	}
 
-	if len(files) == 0 {
+	if len(files) == 0 || errors.Is(err, os.ErrNotExist) {
 		return nil, storage.ErrNoSavedPages
 	}
 

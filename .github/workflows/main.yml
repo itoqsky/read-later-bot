@@ -69,7 +69,8 @@ jobs:
             --restart always \
             --publish 8000:8000 \
             --name $(echo $CONTAINER_NAME) \
-            $(echo $REGISTRY)/$(echo $IMAGE_NAME):$(echo $GITHUB_SHA | head -c7)
+            $(echo $REGISTRY)/$(echo $IMAGE_NAME):$(echo $GITHUB_SHA | head -c7) \
+            /bin/sh
             
             
 
