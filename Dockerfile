@@ -19,4 +19,4 @@ COPY --from=0 /github.com/itoqsky/reader-adviser-bot/.bin/app .
 
 EXPOSE 8000
 
-CMD [ "./app -tg-bot-token BOTF_API_KEY"]
+CMD [ "./app -tg-bot-token TOKEN"]

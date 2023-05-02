@@ -55,18 +55,16 @@ jobs:
             docker login -u ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }} -p ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }} $(echo $REGISTRY)
             
             # Set up environment variables
-            export BOTF_API_KEY=${{ secrets.ACCESS_KEY }}
-            # export POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}
-            # export SECRET_KEY=${{ secrets.SECRET_KEY }}
+            export TOKEN=${{ secrets.TELEGRAM_TOKEN }}
 
-            # # Stop running container
-            # docker stop $(echo $CONTAINER_NAME)
+            # Stop running container
+            docker stop $(echo $CONTAINER_NAME)
 
-            # # Remove old container 
-            # docker rm $(echo $CONTAINER_NAME)
+            # Remove old container 
+            docker rm $(echo $CONTAINER_NAME)
 
             # Run a new container from a new image
-            docker run --env-file $(echo $ENV_FILE_PATH) \
+            docker run -e TOKEN \
             -v $(echo $LOGS_PATH):/logs -d \
             --restart always \
             --publish 8000:8000 \
