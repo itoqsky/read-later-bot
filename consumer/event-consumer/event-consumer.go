@@ -2,8 +2,9 @@ package event_consumer
 
 import (
 	"log"
-	"reader-adviser-bot/events"
 	"time"
+
+	"github.com/itoqsky/reader-adviser-bot/events"
 )
 
 type Consumer struct {

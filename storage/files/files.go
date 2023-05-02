@@ -7,9 +7,10 @@ import (
 	"math/rand"
 	"os"
 	"path/filepath"
-	"reader-adviser-bot/lib/e"
-	"reader-adviser-bot/storage"
 	"time"
+
+	"github.com/itoqsky/reader-adviser-bot/lib/e"
+	"github.com/itoqsky/reader-adviser-bot/storage"
 )
 
 type Storage struct { // define a type that will implement the interface Storage

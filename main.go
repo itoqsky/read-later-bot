@@ -3,10 +3,12 @@ package main
 import (
 	"flag"
 	"log"
-	tgClient "reader-adviser-bot/clients/telegram"
-	event_consumer "reader-adviser-bot/consumer/event-consumer"
-	"reader-adviser-bot/events/telegram"
-	"reader-adviser-bot/storage/files"
+
+	tgClient "github.com/itoqsky/reader-adviser-bot/clients/telegram"
+	event_consumer "github.com/itoqsky/reader-adviser-bot/consumer/event-consumer"
+
+	"github.com/itoqsky/reader-adviser-bot/events/telegram"
+	"github.com/itoqsky/reader-adviser-bot/storage/files"
 )
 
 const (

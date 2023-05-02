@@ -6,8 +6,9 @@ import (
 	"net/http"
 	"net/url"
 	"path"
-	"reader-adviser-bot/lib/e"
 	"strconv"
+
+	"github.com/itoqsky/reader-adviser-bot/lib/e"
 )
 
 const (

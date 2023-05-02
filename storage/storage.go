@@ -5,7 +5,8 @@ import (
 	"errors"
 	"fmt"
 	"io"
-	"reader-adviser-bot/lib/e"
+
+	"github.com/itoqsky/reader-adviser-bot/lib/e"
 )
 
 type Storage interface {

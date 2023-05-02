@@ -2,10 +2,11 @@ package telegram
 
 import (
 	"errors"
-	"reader-adviser-bot/clients/telegram"
-	"reader-adviser-bot/events"
-	"reader-adviser-bot/lib/e"
-	"reader-adviser-bot/storage"
+
+	"github.com/itoqsky/reader-adviser-bot/clients/telegram"
+	"github.com/itoqsky/reader-adviser-bot/events"
+	"github.com/itoqsky/reader-adviser-bot/lib/e"
+	"github.com/itoqsky/reader-adviser-bot/storage"
 )
 
 type Processor struct {

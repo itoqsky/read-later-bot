@@ -4,9 +4,11 @@ import (
 	"errors"
 	"log"
 	"net/url"
-	"reader-adviser-bot/lib/e"
-	"reader-adviser-bot/storage"
+
 	"strings"
+
+	"github.com/itoqsky/reader-adviser-bot/lib/e"
+	"github.com/itoqsky/reader-adviser-bot/storage"
 )
 
 const (
