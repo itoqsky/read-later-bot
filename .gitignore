@@ -1,4 +1,4 @@
 .env
+.bin
 go.work
-bin/
 files_storage/
